@@ -1,0 +1,12 @@
+body {
+    margin: 100px;
+    padding: 100px;
+}
+.drop-zone {
+    height: 300px;
+    width: 300px;
+    background-color: #efefef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
