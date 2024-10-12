@@ -2,7 +2,7 @@
 // [ {path: "/dir/file.ext", file:  ...}, ...]
 
 
-// Clever way to 'promisify' readEntries
+// 'promisify' readEntries
 // https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/createReader
 export async function readDirectory(directory) {
     const dirReader = directory.createReader();
@@ -30,7 +30,7 @@ export function convert(item, path) {
     return new Promise((resolve, reject) => {
         path = path || "";
         if (item.isFile) {
-            // Get file
+            // Get file (as promise)
             item.file((file) => {
                 const fullPath = `${path}/${file.name}`
                 // console.log(`File: ${fullPath}`, file);
@@ -47,6 +47,7 @@ export function convert(item, path) {
 export function convertItems(items) {
     let results = []
     for (let i = 0; i < items.length; i++) {
+        // read each entry from the dropped data
         let entry = items[i].webkitGetAsEntry();
         // [{file, path: "/files/test.png}]
         results.push(convert(entry))

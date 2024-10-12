@@ -61,17 +61,18 @@ view model =
             , onDropRequestFileTree NoOp
             , onFileTree OnFiles
             ]
-
-        viewFile_ : ( String, File ) -> Html Msg
-        viewFile_ ( n, f ) =
-            li []
-                [ text n
-                , span [] [ text <| " (" ++ (String.fromInt <| File.size f) ++ ")" ]
-                ]
     in
     div []
         [ ul [] <| L.map viewFile_ model.files
         , div (id "dz" :: class "drop-zone" :: dzAttrs_) [ text "Drop File or Directory Here" ]
+        ]
+
+
+viewFile_ : ( String, File ) -> Html Msg
+viewFile_ ( n, f ) =
+    li []
+        [ text n
+        , span [] [ text <| " (" ++ (String.fromInt <| File.size f) ++ ")" ]
         ]
 
 
